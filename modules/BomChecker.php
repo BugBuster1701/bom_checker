@@ -119,6 +119,8 @@ class BomChecker extends \BackendModule
 		$this->Template->theme       = static::getTheme();
 		$this->getSession(); // module from session
 		
+		$this->Template->DirectorySelection = $this->getSpecials();
+		
 		if (\Input::post('check_dirs') ==1)
 		{
 			$bomdirs = deserialize(\Input::post('bomdirs'));
@@ -149,7 +151,7 @@ class BomChecker extends \BackendModule
 			$this->Template->check_bom = 3; 
 		}
 		$this->Template->ModuleSelection    = $this->getModules();
-		$this->Template->DirectorySelection = $this->getSpecials();
+		
 	}
 	
 	/**
@@ -181,9 +183,11 @@ class BomChecker extends \BackendModule
 	 */
 	protected function getSpecials()
 	{
-		$this->arrSpecialDirectories['core_config'] = 'system/config';
-		$this->arrSpecialDirectories['core_templates'] = 'templates';
-		$this->arrSpecialDirectories['all_modules'] = 'system/modules';
+        $this->arrSpecialDirectories['core_plugins']   = 'plugins';
+	    $this->arrSpecialDirectories['core_templates'] = 'templates';
+		$this->arrSpecialDirectories['core_config']    = 'system/config';
+		$this->arrSpecialDirectories['core_drivers']   = 'system/drivers';
+		$this->arrSpecialDirectories['all_modules']    = 'system/modules';
 	
 		foreach ($this->arrSpecialDirectories as $k=>$v)
 		{
@@ -223,10 +227,12 @@ class BomChecker extends \BackendModule
 					//print "Check: ".$rit->getFilename() . "\n";
 					if (array_key_exists('extension',$path_parts)) 
 					{
-						if ('php' == $path_parts['extension'] 
-						 || 'tpl' == $path_parts['extension']
-						 || 'xhtml' == $path_parts['extension']
-						 || 'html5' == $path_parts['extension']) 
+					    if ('php'   == strtolower($path_parts['extension']) 
+						 || 'tpl'   == strtolower($path_parts['extension'])
+						 || 'xhtml' == strtolower($path_parts['extension'])
+						 || 'html5' == strtolower($path_parts['extension'])
+						 || 'css'   == strtolower($path_parts['extension'])
+						   ) 
 						{
 							$object = new \SplFileObject($file->getRealPath());
 							

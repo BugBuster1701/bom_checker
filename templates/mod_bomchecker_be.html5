@@ -6,12 +6,14 @@
 #bom_result {
 	padding:0 18px 18px 18px;
 }
-#bom_result img {
-	padding-right: 10px;
-	vertical-align: text-bottom;
-}
 #bom_result #bomtitle {
 	font-weight: bold;
+	margin-bottom: 10px;
+}
+#bom_result .bomtype {
+	font-weight: bold;
+    float: left;
+    width: 84px;
 }
 /* ]]> */
 </style>
@@ -63,26 +65,26 @@
 </section>
 
 <?php if($this->check_bom == 1) : ?>
-<hr><div id="bom_result"><img src="system/themes/<?php echo $this->theme; ?>/images/important.gif" title="result" height="16" width="16"><span id="bomtitle"><?php echo $GLOBALS['TL_LANG']['BomChecker']['result']; ?></span>
+<hr><div id="bom_result"><p class="tl_error" id="bomtitle"><?php echo $GLOBALS['TL_LANG']['BomChecker']['result']; ?></p>
 	<?php if(count($this->check_dir_found)) : ?>
 <ul>
 	<?php foreach ($this->check_dir_found as $bomfiles) : ?>
-<li><?php echo $bomfiles; ?></li>
+<li><div class="bomtype"><?php echo $bomfiles[0]; ?></div><div class="bomfile">: <?php echo $bomfiles[1]; ?></div></li>
 	<?php endforeach; ?>
 </ul>
 	<?php endif; ?>
 	<?php if(count($this->check_module_found)) : ?>
 <ul>
 	<?php foreach ($this->check_module_found as $bomfiles) : ?>
-<li><?php echo $bomfiles; ?></li>
+<li><div class="bomtype"><?php echo $bomfiles[0]; ?></div><div class="bomfile">: <?php echo $bomfiles[1]; ?></div></li>
 	<?php endforeach; ?>
 </ul>
 	<?php endif; ?>
 </div>
 <?php endif; ?>
 <?php if($this->check_bom == 2) : ?>
-<hr><div id="bom_result"><img src="system/themes/<?php echo $this->theme; ?>/images/help.gif" title="result" height="16" width="16"><span id="bomtitle"><?php echo $GLOBALS['TL_LANG']['BomChecker']['result_ok']; ?></span></div>
+<hr><div id="bom_result"><p class="tl_confirm" id="bomtitle"><?php echo $GLOBALS['TL_LANG']['BomChecker']['result_ok']; ?></p></div>
 <?php endif; ?>
 <?php if($this->check_bom == 3) : ?>
-<hr><div id="bom_result"><img src="system/themes/<?php echo $this->theme; ?>/images/important.gif" title="result" height="16" width="16"><span id="bomtitle"><?php echo $GLOBALS['TL_LANG']['BomChecker']['spl']; ?></span></div>
+<hr><div id="bom_result"><p class="tl_info" id="bomtitle"><?php echo $GLOBALS['TL_LANG']['BomChecker']['spl']; ?></p></div>
 <?php endif; ?>

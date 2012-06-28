@@ -17,7 +17,7 @@
 /**
  * Back end module
  */
-$GLOBALS['BE_MOD']['development']['bom_checker'] = array
+$GLOBALS['BE_MOD']['devtools']['bom_checker'] = array
 (
 	'callback'   => 'BomChecker',
 	'icon'       => 'system/modules/bom_checker/html/bomcheck.png',

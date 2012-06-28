@@ -23,7 +23,6 @@ $GLOBALS['TL_LANG']['BomChecker']['directories']    = 'Spezielle Verzeichnisse';
 $GLOBALS['TL_LANG']['BomChecker']['submitBT']       = 'Prüfen';
 $GLOBALS['TL_LANG']['BomChecker']['module_help']    = 'Bitte wählen Sie das zu untersuchende Modul aus. Das Modulverzeichnis wird rekursiv durchsucht.';
 $GLOBALS['TL_LANG']['BomChecker']['directory_help'] = 'Bitte wählen Sie die zu untersuchenden Verzeichnisse aus. Diese werden rekursiv durchsucht.';
-$GLOBALS['TL_LANG']['MSC']['backBT']                = 'Zurück';
 $GLOBALS['TL_LANG']['BomChecker']['result']         = 'Dateien mit BOM gefunden!';
 $GLOBALS['TL_LANG']['BomChecker']['result_ok']      = 'Keine Dateien mit BOM gefunden.';
 $GLOBALS['TL_LANG']['BomChecker']['spl']            = 'Die Standard PHP Library (SPL), normalerweise fester Bestandteil von PHP 5, fehlt hier und ist für diese Erweiterung notwendig!';

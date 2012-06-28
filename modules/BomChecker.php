@@ -186,7 +186,7 @@ class BomChecker extends \BackendModule
         $this->arrSpecialDirectories['core_plugins']   = 'plugins';
 	    $this->arrSpecialDirectories['core_templates'] = 'templates';
 		$this->arrSpecialDirectories['core_config']    = 'system/config';
-		$this->arrSpecialDirectories['core_drivers']   = 'system/drivers';
+		//$this->arrSpecialDirectories['core_drivers']   = 'system/drivers'; //in C3: system/modules/core/drivers
 		$this->arrSpecialDirectories['all_modules']    = 'system/modules';
 	
 		foreach ($this->arrSpecialDirectories as $k=>$v)
@@ -215,10 +215,10 @@ class BomChecker extends \BackendModule
 			return true;
 		}
 		// todo: check ob dir vorhanden
-		
-		$rit = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory), \RecursiveIteratorIterator::CHILD_FIRST);
+
 		try 
 		{
+		    $rit = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory), \RecursiveIteratorIterator::CHILD_FIRST);
 			foreach ($rit as $file) 
 			{
 				if ($file->isFile()) 
@@ -240,15 +240,15 @@ class BomChecker extends \BackendModule
 							
 							if ( ($file->getSize()>2) && (substr( $line, 0, 3 ) == self::STR_BOM8) ) 
 							{
-								$this->_foundbom[] = "UTF-8 BOM&nbsp;: ".str_replace(TL_ROOT,'',$file->getRealPath());
+								$this->_foundbom[] = array("UTF-8&nbsp;&nbsp; BOM",str_replace(TL_ROOT,'',$file->getRealPath()));
 							} 
 							elseif ( ($file->getSize()>1) && (substr( $line, 0, 2 ) == self::STR_BOM16LE) ) 
 							{
-								$this->_foundbom[] = "UTF-16 BOM: ".str_replace(TL_ROOT,'',$file->getRealPath());
+								$this->_foundbom[] = array("UTF-16 BOM",str_replace(TL_ROOT,'',$file->getRealPath()));
 							} 
 							elseif ( ($file->getSize()>1) && (substr( $line, 0, 2 ) == self::STR_BOM16BE) ) 
 							{
-								$this->_foundbom[] = "UTF-16 BOM: ".str_replace(TL_ROOT,'',$file->getRealPath());
+								$this->_foundbom[] = array("UTF-16 BOM",str_replace(TL_ROOT,'',$file->getRealPath()));
 							}
 						} // if extension php/tpl
 					} // if extension
@@ -262,7 +262,8 @@ class BomChecker extends \BackendModule
 		} 
 		catch (\Exception $e) 
 		{
-			die ('Exception caught: '. $e->getMessage());
+			//die ('Exception caught: '. $e->getMessage());
+		    return true;
 		}
 	} // CheckFilesForBOM
 	

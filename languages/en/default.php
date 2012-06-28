@@ -23,7 +23,6 @@ $GLOBALS['TL_LANG']['BomChecker']['directories']    = 'Special directories';
 $GLOBALS['TL_LANG']['BomChecker']['submitBT']       = 'Check';
 $GLOBALS['TL_LANG']['BomChecker']['module_help']    = 'Please select the module you want to check.';
 $GLOBALS['TL_LANG']['BomChecker']['directory_help'] = 'Please select the directories you want to check. These are searched recursively.';
-$GLOBALS['TL_LANG']['MSC']['backBT']                = 'Go back';
 $GLOBALS['TL_LANG']['BomChecker']['result']         = 'BOM files found!';
 $GLOBALS['TL_LANG']['BomChecker']['result_ok']      = 'No files with BOM found.';
 $GLOBALS['TL_LANG']['BomChecker']['spl']            = 'The module requires the Standard PHP Library (SPL), this is an integral part of PHP 5';

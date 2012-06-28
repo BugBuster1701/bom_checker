@@ -18,5 +18,5 @@
 /**
  * Back end module
  */
-$GLOBALS['TL_LANG']['MOD']['development'] = 'Developer help';
+$GLOBALS['TL_LANG']['MOD']['devtools']  = 'Developer tools';
 $GLOBALS['TL_LANG']['MOD']['bom_checker'] = array('BOM Checker', 'Byte Order Mark (BOM) - Checker');

@@ -31,15 +31,14 @@ if (!defined('TL_ROOT')) die('You can not access this file directly!');
 class BomChecker extends \BackendModule
 {
 	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'mod_bomchecker_be';
-	
-	/**
 	 * Current version of the class.
 	 */
-	const BomChecker_VERSION = '3.0.0';
+	const BOMCHECKER_VERSION = '3.0.0';
+
+	/**
+	 * Name of session name
+	 */
+	const BOMCHECK_SESSION       = 'bomcheckmodule';
 	
 	/**
 	 * BOM8
@@ -53,9 +52,16 @@ class BomChecker extends \BackendModule
 	 * BOM16 BE
 	 */
 	const STR_BOM16BE = "\xFE\xFF";
+
+	/**
+	 * Template
+	 * @var string
+	 */
+	protected $strTemplate = 'mod_bomchecker_be';
 	
 	/**
 	 * Special Check Directories
+	 * @var array
 	 */
 	protected $arrSpecialDirectories = array();
 	
@@ -63,6 +69,7 @@ class BomChecker extends \BackendModule
 	 * BOM Files
 	 *
 	 * @var array
+	 * @access private
 	 */
 	private $_foundbom = array();
 	
@@ -74,6 +81,7 @@ class BomChecker extends \BackendModule
 	 * SPL not active: 3
 	 *
 	 * @var integer
+	 * @access private
 	 */
 	private $_checkbom = 0;
 	
@@ -81,6 +89,7 @@ class BomChecker extends \BackendModule
 	 * Selected module
 	 *
 	 * @var string
+	 * @access private
 	 */
 	private $_module = '';
 	
@@ -91,12 +100,6 @@ class BomChecker extends \BackendModule
 	 * @access private
 	 */
 	private $_session   = '';
-	
-	/**
-	 * Name of session name
-	 */
-	const BOMCHECK_SESSION       = 'bomcheckmodule';
-
 	
 	/**
 	 * Compile the current element
@@ -131,7 +134,7 @@ class BomChecker extends \BackendModule
 			foreach ($bomdirs as $bomdir)
 			{
 				//check this!
-				$this->_checkbom = $this->CheckFilesForBOM(TL_ROOT . '/' . $this->arrSpecialDirectories[$bomdir]);
+				$this->_checkbom = $this->checkFilesForBOM(TL_ROOT . '/' . $this->arrSpecialDirectories[$bomdir]);
 			}
 			$this->Template->check_dir_found = $this->_foundbom;
 			$this->Template->check_bom = ($this->_checkbom === true) ? '2' : '1';
@@ -142,7 +145,7 @@ class BomChecker extends \BackendModule
 			$this->_module = \Input::post('list_modules');
 			$this->setSession(); // module in session
 			//check this!
-			$this->_checkbom = $this->CheckFilesForBOM(TL_ROOT . '/system/modules/' . $this->_module);
+			$this->_checkbom = $this->checkFilesForBOM(TL_ROOT . '/system/modules/' . $this->_module);
 			$this->Template->check_module_found = $this->_foundbom;
 			$this->Template->check_bom = ($this->_checkbom === true) ? '2' : '1';
 		}
@@ -150,7 +153,7 @@ class BomChecker extends \BackendModule
 		{
 			$this->Template->check_bom = 3; 
 		}
-		$this->Template->ModuleSelection    = $this->getModules();
+		$this->Template->ModuleSelection = $this->getModules();
 		
 	}
 	
@@ -166,7 +169,9 @@ class BomChecker extends \BackendModule
 		{
 	 		$selected="";
 	 		if ($this->_module == $strModule)
+	 		{
 	 			$selected=' selected="selected"';
+	 		}
 		
 			$strAllModules .= sprintf('<option value="%s" %s>%s</option>', $strModule, $selected,$strModule);
 		}
@@ -193,9 +198,9 @@ class BomChecker extends \BackendModule
 		{
 			$arrBomDirs[] = array
 			(
-				'id' => 'bomdirs_' . $k,
+				'id'    => 'bomdirs_' . $k,
 				'value' => $k,
-				'name' => $v
+				'name'  => $v
 			);
 		}
 		
@@ -208,7 +213,7 @@ class BomChecker extends \BackendModule
 	 * @param string $directory	Directory
 	 * @return bool	
 	 */
-	protected function CheckFilesForBOM($directory)
+	protected function checkFilesForBOM($directory)
 	{
 		if (!extension_loaded('SPL')) 
 		{
@@ -276,12 +281,10 @@ class BomChecker extends \BackendModule
 	protected function getSession()
 	{
 		$this->_session = $this->Session->get( self::BOMCHECK_SESSION );
-		$arrSession = '';
 		
 		if(!empty($this->_session))
 		{
-			$arrSession = $this->_session;
-			$this->_module = $arrSession[0];
+			$this->_module = $this->_session[0];
 		} 
 	}
 	

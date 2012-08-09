@@ -8,7 +8,7 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
  * PHP version 5
- * @copyright  Glen Langer 2011 
+ * @copyright  Glen Langer 2011,2012 
  * @author     BugBuster 
  * @package    BomChecker 
  * @license    LGPL 
@@ -20,7 +20,7 @@
 $GLOBALS['BE_MOD']['devtools']['bom_checker'] = array
 (
 	'callback'   => 'BomChecker',
-	'icon'       => 'system/modules/bom_checker/html/bomcheck.png',
+	'icon'       => 'system/modules/bom_checker/public/bomcheck.png',
 );
 
 ?>

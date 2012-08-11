@@ -188,11 +188,12 @@ class BomChecker extends \BackendModule
 	 */
 	protected function getSpecials()
 	{
-        $this->arrSpecialDirectories['core_plugins']   = 'plugins';
+        //$this->arrSpecialDirectories['core_plugins']   = 'plugins'; // in C3 RC1 entfallen
 	    $this->arrSpecialDirectories['core_templates'] = 'templates';
 		$this->arrSpecialDirectories['core_config']    = 'system/config';
 		//$this->arrSpecialDirectories['core_drivers']   = 'system/drivers'; //in C3: system/modules/core/drivers
 		$this->arrSpecialDirectories['all_modules']    = 'system/modules';
+		$this->arrSpecialDirectories['core_vendor']    = 'system/vendor'; // das neu plugins was nicht js ist
 	
 		foreach ($this->arrSpecialDirectories as $k=>$v)
 		{

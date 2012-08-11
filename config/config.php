@@ -19,7 +19,7 @@
  */
 $GLOBALS['BE_MOD']['devtools']['bom_checker'] = array
 (
-	'callback'   => 'BomChecker',
+	'callback'   => 'BomChecker\BomChecker',
 	'icon'       => 'system/modules/bom_checker/public/bomcheck.png',
 );
 

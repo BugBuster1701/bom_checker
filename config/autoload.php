@@ -16,7 +16,7 @@
  */
 ClassLoader::addNamespaces(array
 (
-	'BugBuster\BomChecker',
+	'BugBuster',
 ));
 
 

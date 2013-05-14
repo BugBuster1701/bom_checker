@@ -1,17 +1,15 @@
 <?php 
 
 /**
- * Contao Open Source CMS
- * Copyright (C) 2005-2012 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
  *
- * @link http://www.contao.org
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * Modul BomChecker 
  *
- * PHP version 5
- * @copyright  Glen Langer 2011,2012 
- * @author     BugBuster 
+ * @copyright  Glen Langer 2007..2013 <http://www.contao.glen-langer.de> 
+ * @author     Glen Langer (BugBuster) 
  * @package    BomChecker 
  * @license    LGPL 
+ * @see        https://github.com/BugBuster1701/bom_checker
  */
 
 /**
@@ -22,16 +20,17 @@ namespace BugBuster\BomChecker;
 /**
  * Class BomChecker
  * 
- * @copyright  Glen Langer 2011,2012 
- * @author     BugBuster 
+ * @copyright  Glen Langer 2007..2013 <http://www.contao.glen-langer.de> 
+ * @author     Glen Langer (BugBuster)
  * @package    BomChecker
+ * @license    LGPL
  */
 class BomChecker extends \BackendModule
 {
 	/**
 	 * Current version of the class.
 	 */
-	const BOMCHECKER_VERSION = '3.0.0';
+	const BOMCHECKER_VERSION = '3.0.1';
 
 	/**
 	 * Name of session name
@@ -186,12 +185,14 @@ class BomChecker extends \BackendModule
 	 */
 	protected function getSpecials()
 	{
-        //$this->arrSpecialDirectories['core_plugins']   = 'plugins'; // in C3 RC1 entfallen
 	    $this->arrSpecialDirectories['core_templates'] = 'templates';
 		$this->arrSpecialDirectories['core_config']    = 'system/config';
-		//$this->arrSpecialDirectories['core_drivers']   = 'system/drivers'; //in C3: system/modules/core/drivers
 		$this->arrSpecialDirectories['all_modules']    = 'system/modules';
-		$this->arrSpecialDirectories['core_vendor']    = 'system/vendor'; // das neu plugins was nicht js ist
+		
+		if (version_compare(VERSION, '3.1', '<'))
+		{
+		    $this->arrSpecialDirectories['core_vendor']    = 'system/vendor';
+		}
 	
 		foreach ($this->arrSpecialDirectories as $k=>$v)
 		{

@@ -1,0 +1,40 @@
+{
+	"name":"bugbuster/bom_checker",
+	"description":"Contao CMS Module - Byte Order Mark (BOM) - Checker",
+	"keywords":["bom","detection","utf8","contao"],
+	"type":"contao-module",
+	"homepage":"http://www.contao.glen-langer.de",
+	"license":"LGPL-3.0+",
+	"authors":[
+		{
+			"name":"Glen Langer",
+			"homepage":"http://www.contao.glen-langer.de",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"issues":"https://github.com/BugBuster1701/bom_checker/issues",
+		"irc":"irc://irc.freenode.org/contao.dev",
+		"source":"https://github.com/BugBuster1701/bom_checker",
+		"wiki":"http://de.contaowiki.org/BOM_Checker",
+		"forum":"https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
+	},
+	"require":{
+		"php":">=5.3",
+		"contao/core":">=3.0.6,<4",
+		"contao-community-alliance/composer-installer":"*"
+	},
+	"autoload":{
+		"classmap":[""]
+	},
+	"replace":{
+		"contao-legacy/bom_checker":"*"
+	},
+	"extra":{
+		"contao":{
+			"sources":{
+				"":"system/modules/bom_checker"
+			}
+		}
+	}
+}

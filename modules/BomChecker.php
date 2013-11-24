@@ -30,7 +30,7 @@ class BomChecker extends \BackendModule
 	/**
 	 * Current version of the class.
 	 */
-	const BOMCHECKER_VERSION = '3.0.1';
+	const BOMCHECKER_VERSION = '3.2.0';
 
 	/**
 	 * Name of session name

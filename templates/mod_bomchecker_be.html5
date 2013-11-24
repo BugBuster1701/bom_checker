@@ -1,5 +1,4 @@
-<style type="text/css">
-/* <![CDATA[ */
+<style>
 #bomcheck1, #bomcheck2 {
 	width:100%;
 }
@@ -15,7 +14,6 @@
     float: left;
     width: 84px;
 }
-/* ]]> */
 </style>
 <div id="tl_buttons">
 	<a href="<?php echo $this->referer;?>" class="header_back" title="<?php echo $this->backTitle;?>" accesskey="b" onclick="Backend.getScrollOffset();"><?php echo $this->backTitle;?></a>

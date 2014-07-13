@@ -30,7 +30,7 @@ class BomChecker extends \BackendModule
 	/**
 	 * Current version of the class.
 	 */
-	const BOMCHECKER_VERSION = '3.2.0';
+	const BOMCHECKER_VERSION = '3.3.0';
 
 	/**
 	 * Name of session name
@@ -193,6 +193,10 @@ class BomChecker extends \BackendModule
 		{
 		    $this->arrSpecialDirectories['core_vendor']    = 'system/vendor';
 		}
+		if (file_exists(TL_ROOT .'/vendor')) 
+		{
+		    $this->arrSpecialDirectories['composer_vendor']    = 'vendor';
+		}
 	
 		foreach ($this->arrSpecialDirectories as $k=>$v)
 		{
@@ -237,6 +241,7 @@ class BomChecker extends \BackendModule
 						 || 'xhtml' == strtolower($path_parts['extension'])
 						 || 'html5' == strtolower($path_parts['extension'])
 						 || 'css'   == strtolower($path_parts['extension'])
+                         || 'scss'  == strtolower($path_parts['extension'])
 						   ) 
 						{
 							$object = new \SplFileObject($file->getRealPath());

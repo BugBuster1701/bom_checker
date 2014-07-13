@@ -22,7 +22,7 @@
 	"require":{
 		"php":">=5.3",
 		"contao/core":">=3.0.6,<4",
-		"contao-community-alliance/composer-installer":"*"
+		"contao-community-alliance/composer-plugin": "*"
 	},
 	"autoload":{
 		"classmap":[""]
@@ -34,6 +34,12 @@
 		"contao":{
 			"sources":{
 				"":"system/modules/bom_checker"
+			},
+			"transifex": {
+				"project": "contao-bom_checker",
+				"prefix": "master-",
+				"languages_cto": "languages",
+				"languages_tx": ".tx"
 			}
 		}
 	}
